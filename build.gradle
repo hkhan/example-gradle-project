@@ -1,0 +1,26 @@
+//*********************************************************
+// see docs at http://www.gradle.org/documentation
+// 
+// ./gradlew tasks  // to list tasks, add --all for longer list
+// ./gradlew eclipes  // generates eclipse project files
+// ./gradlew idea     // generate intellij files
+//*********************************************************
+apply plugin: 'java'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+task wrapper(type: Wrapper) {
+        gradleVersion = '1.1'
+}
+
+// initialize a project with the standard layout taking into account plugins
+task createDirs << {
+    sourceSets*.allSource.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
